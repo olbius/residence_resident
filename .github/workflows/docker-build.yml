@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: residence-resident-portal
+  DOCKER_IMAGE: fndocker/residence_resident
 
 jobs:
   build-and-push:
@@ -36,7 +36,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.DOCKER_IMAGE }}
           tags: |
             type=ref,event=branch
             type=ref,event=pr

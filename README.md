@@ -53,6 +53,17 @@ npm run preview
 - `GET /rest/s1/residence/my/vehicles` - Vehicles
 - `GET /rest/s1/residence/my/balance` - Outstanding balance
 
+## Docker Deployment
+
+Pre-built Docker images are available:
+
+```bash
+docker pull fndocker/residence_resident:latest
+docker run -d -p 3001:80 fndocker/residence_resident:latest
+```
+
+See [DOCKER.md](DOCKER.md) for detailed Docker deployment instructions.
+
 ## License
 
 Part of the Residence Management System.

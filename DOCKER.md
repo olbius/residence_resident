@@ -61,10 +61,10 @@ Images are automatically tagged as:
 
 ```bash
 # Build the image
-docker build -t residence-resident-portal:latest .
+docker build -t fndocker/residence_resident:latest .
 
 # Build with custom tag
-docker build -t myusername/residence-resident-portal:v1.0.0 .
+docker build -t fndocker/residence_resident:v1.0.0 .
 ```
 
 ### Multi-platform Build
@@ -76,7 +76,7 @@ docker buildx create --name mybuilder --use
 # Build for multiple platforms
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
-  -t myusername/residence-resident-portal:latest \
+  -t fndocker/residence_resident:latest \
   --push .
 ```
 
@@ -87,7 +87,7 @@ The Dockerfile supports build-time arguments:
 ```bash
 docker build \
   --build-arg NODE_VERSION=18 \
-  -t residence-resident-portal:latest .
+  -t fndocker/residence_resident:latest .
 ```
 
 ## Running the Container
@@ -99,7 +99,7 @@ docker build \
 docker run -d \
   --name residence-portal \
   -p 3001:80 \
-  myusername/residence-resident-portal:latest
+  fndocker/residence_resident:latest
 ```
 
 Access at: http://localhost:3001
@@ -112,7 +112,7 @@ docker run -d \
   --name residence-portal \
   -p 3001:80 \
   --network my-network \
-  myusername/residence-resident-portal:latest
+  fndocker/residence_resident:latest
 ```
 
 ### Environment-Specific Configuration
@@ -125,7 +125,7 @@ docker run -d \
   --name residence-portal \
   -p 3001:80 \
   -v $(pwd)/nginx.prod.conf:/etc/nginx/conf.d/default.conf \
-  myusername/residence-resident-portal:latest
+  fndocker/residence_resident:latest
 ```
 
 2. **Use environment variables with nginx template**:
@@ -142,7 +142,7 @@ version: '3.8'
 
 services:
   residence-portal:
-    image: myusername/residence-resident-portal:latest
+    image: fndocker/residence_resident:latest
     ports:
       - "3001:80"
     networks:
@@ -175,7 +175,7 @@ services:
       - JAVA_OPTS=-Xmx2g
 
   residence-portal:
-    image: myusername/residence-resident-portal:latest
+    image: fndocker/residence_resident:latest
     ports:
       - "3001:80"
     depends_on:
@@ -227,7 +227,7 @@ spec:
     spec:
       containers:
       - name: portal
-        image: myusername/residence-resident-portal:latest
+        image: fndocker/residence_resident:latest
         ports:
         - containerPort: 80
         resources:
@@ -259,7 +259,7 @@ kubectl apply -f deployment.yaml
 
 After successful CI/CD, images are available at:
 ```
-docker pull <DOCKERHUB_USERNAME>/residence-resident-portal:latest
+docker pull fndocker/residence_resident:latest
 ```
 
 ### Image Size
@@ -310,13 +310,13 @@ docker network inspect residence-network
 
 ```bash
 # Verify image exists
-docker pull myusername/residence-resident-portal:latest
+docker pull fndocker/residence_resident:latest
 
 # Login to Docker Hub
 docker login
 
 # Check image tags
-docker images | grep residence-resident-portal
+docker images | grep residence_resident
 ```
 
 ## Development Workflow
