@@ -1,15 +1,15 @@
 # Multi-stage build for Residence Resident Portal
 
 # Stage 1: Build the application
-FROM node:18-alpine as build
+FROM node:18-alpine AS build
 
 WORKDIR /app
 
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci --only=production
+# Install dependencies (including dev dependencies needed for build)
+RUN npm ci
 
 # Copy source code
 COPY . .
