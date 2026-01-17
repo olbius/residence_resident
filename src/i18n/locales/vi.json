@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": "Cổng Thông Tin Cư Dân",
+    "welcome": "Chào mừng"
+  },
+  "auth": {
+    "login": "Đăng nhập",
+    "username": "Tên đăng nhập",
+    "password": "Mật khẩu",
+    "logout": "Đăng xuất",
+    "loggingIn": "Đang đăng nhập...",
+    "loginError": "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin."
+  },
+  "nav": {
+    "dashboard": "Trang Chủ",
+    "invoices": "Hóa Đơn",
+    "payments": "Thanh Toán",
+    "vehicles": "Phương Tiện"
+  },
+  "dashboard": {
+    "title": "Thông Tin Gia Đình",
+    "familyInfo": "Thông Tin Căn Hộ",
+    "unit": "Căn hộ",
+    "building": "Tòa nhà",
+    "floor": "Tầng",
+    "area": "Diện tích (m²)",
+    "moveInDate": "Ngày chuyển đến",
+    "members": "Thành viên",
+    "vehicles": "Phương tiện đã đăng ký",
+    "financialSummary": "Tổng Quan Tài Chính",
+    "outstandingBalance": "Số tiền còn nợ",
+    "totalInvoices": "Tổng hóa đơn",
+    "totalPayments": "Tổng thanh toán"
+  },
+  "invoices": {
+    "title": "Hóa Đơn Của Tôi",
+    "invoiceNumber": "Số HĐ",
+    "date": "Ngày",
+    "dueDate": "Ngày đến hạn",
+    "amount": "Số tiền",
+    "status": "Trạng thái",
+    "noInvoices": "Chưa có hóa đơn"
+  },
+  "payments": {
+    "title": "Thanh Toán Của Tôi",
+    "paymentDate": "Ngày thanh toán",
+    "amount": "Số tiền",
+    "method": "Phương thức",
+    "status": "Trạng thái",
+    "noPayments": "Chưa có thanh toán"
+  },
+  "vehicles": {
+    "title": "Phương Tiện Đã Đăng Ký",
+    "type": "Loại",
+    "plateNumber": "Biển số",
+    "brand": "Hãng",
+    "model": "Dòng",
+    "parkingSpot": "Chỗ đậu",
+    "monthlyFee": "Phí tháng",
+    "status": "Trạng thái",
+    "noVehicles": "Chưa đăng ký phương tiện",
+    "types": {
+      "car": "Ô tô",
+      "motorcycle": "Xe máy",
+      "ebike": "Xe điện",
+      "bicycle": "Xe đạp"
+    }
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "back": "Quay lại",
+    "close": "Đóng"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "app": {
+    "title": "Resident Portal",
+    "welcome": "Welcome"
+  },
+  "auth": {
+    "login": "Login",
+    "username": "Username",
+    "password": "Password",
+    "logout": "Logout",
+    "loggingIn": "Logging in...",
+    "loginError": "Login failed. Please check your credentials."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "invoices": "My Invoices",
+    "payments": "My Payments",
+    "vehicles": "My Vehicles"
+  },
+  "dashboard": {
+    "title": "My Family Dashboard",
+    "familyInfo": "Family Information",
+    "unit": "Unit",
+    "building": "Building",
+    "floor": "Floor",
+    "area": "Area (sqm)",
+    "moveInDate": "Move-in Date",
+    "members": "Family Members",
+    "vehicles": "Registered Vehicles",
+    "financialSummary": "Financial Summary",
+    "outstandingBalance": "Outstanding Balance",
+    "totalInvoices": "Total Invoices",
+    "totalPayments": "Total Payments"
+  },
+  "invoices": {
+    "title": "My Invoices",
+    "invoiceNumber": "Invoice #",
+    "date": "Date",
+    "dueDate": "Due Date",
+    "amount": "Amount",
+    "status": "Status",
+    "noInvoices": "No invoices found"
+  },
+  "payments": {
+    "title": "My Payments",
+    "paymentDate": "Payment Date",
+    "amount": "Amount",
+    "method": "Method",
+    "status": "Status",
+    "noPayments": "No payments found"
+  },
+  "vehicles": {
+    "title": "My Registered Vehicles",
+    "type": "Type",
+    "plateNumber": "Plate Number",
+    "brand": "Brand",
+    "model": "Model",
+    "parkingSpot": "Parking Spot",
+    "monthlyFee": "Monthly Fee",
+    "status": "Status",
+    "noVehicles": "No vehicles registered",
+    "types": {
+      "car": "Car",
+      "motorcycle": "Motorcycle",
+      "ebike": "Electric Bike",
+      "bicycle": "Bicycle"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "back": "Back",
+    "close": "Close"
+  }
+}
