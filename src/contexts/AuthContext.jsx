@@ -63,10 +63,26 @@ export const AuthProvider = ({ children }) => {
         return { success: true };
       } catch (familyError) {
         // If can't access family info, user is not a resident
+        console.error('Family access error:', familyError);
+        console.error('Response data:', familyError.response?.data);
+        
         localStorage.removeItem('moquiSessionToken');
+        
+        // Provide more specific error message
+        let errorMsg = 'Access denied. ';
+        if (familyError.response?.data?.errors) {
+          errorMsg += familyError.response.data.errors;
+        } else if (familyError.response?.status === 403) {
+          errorMsg += 'You do not have permission to access this portal. Please contact the administrator to be added as a resident.';
+        } else if (familyError.response?.status === 404) {
+          errorMsg += 'Family information not found. Please contact the administrator.';
+        } else {
+          errorMsg += 'This portal is for residents only.';
+        }
+        
         return {
           success: false,
-          error: 'Access denied. This portal is for residents only.'
+          error: errorMsg
         };
       }
     } catch (error) {
