@@ -27,8 +27,9 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
+      // Use Moqui's standard login endpoint
       const response = await axios.post(
-        '/rest/s1/residence/login',
+        '/rest/login',
         { username, password },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -36,14 +37,38 @@ export const AuthProvider = ({ children }) => {
         }
       );
 
-      const { moquiSessionToken, user: userInfo } = response.data;
+      const { moquiSessionToken } = response.data;
       
+      // Store session token
       localStorage.setItem('moquiSessionToken', moquiSessionToken);
-      localStorage.setItem('userInfo', JSON.stringify(userInfo));
       
-      setUser(userInfo);
-      
-      return { success: true };
+      // Fetch user's family info to verify resident status
+      try {
+        const familyResponse = await axios.get('/rest/s1/residence/my/family', {
+          headers: {
+            'Content-Type': 'application/json',
+            'moquiSessionToken': moquiSessionToken
+          },
+          withCredentials: true,
+        });
+        
+        const userInfo = {
+          username,
+          family: familyResponse.data
+        };
+        
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        setUser(userInfo);
+        
+        return { success: true };
+      } catch (familyError) {
+        // If can't access family info, user is not a resident
+        localStorage.removeItem('moquiSessionToken');
+        return {
+          success: false,
+          error: 'Access denied. This portal is for residents only.'
+        };
+      }
     } catch (error) {
       console.error('Login error:', error);
       return { 
@@ -57,8 +82,9 @@ export const AuthProvider = ({ children }) => {
     try {
       const token = localStorage.getItem('moquiSessionToken');
       if (token) {
+        // Use Moqui's standard logout endpoint
         await axios.post(
-          '/rest/s1/residence/logout',
+          '/rest/logout',
           {},
           {
             headers: { 
