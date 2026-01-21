@@ -39,7 +39,15 @@
     "dueDate": "Ngày đến hạn",
     "amount": "Số tiền",
     "status": "Trạng thái",
-    "noInvoices": "Chưa có hóa đơn"
+    "noInvoices": "Chưa có hóa đơn",
+    "invoiceDetail": "Chi Tiết Hóa Đơn",
+    "items": "Các Mục Hóa Đơn",
+    "noItems": "Không có mục nào",
+    "itemDescription": "Mô tả",
+    "quantity": "SL",
+    "unitPrice": "Đơn giá",
+    "itemAmount": "Thành tiền",
+    "total": "Tổng cộng"
   },
   "payments": {
     "title": "Thanh Toán Của Tôi",

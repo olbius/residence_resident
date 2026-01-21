@@ -39,7 +39,15 @@
     "dueDate": "Due Date",
     "amount": "Amount",
     "status": "Status",
-    "noInvoices": "No invoices found"
+    "noInvoices": "No invoices found",
+    "invoiceDetail": "Invoice Details",
+    "items": "Invoice Items",
+    "noItems": "No items found",
+    "itemDescription": "Description",
+    "quantity": "Qty",
+    "unitPrice": "Unit Price",
+    "itemAmount": "Amount",
+    "total": "Total"
   },
   "payments": {
     "title": "My Payments",

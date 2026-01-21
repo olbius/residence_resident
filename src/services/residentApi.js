@@ -48,6 +48,7 @@ export const myVehiclesApi = {
 export const myFinancialApi = {
   getBalance: () => apiClient.get('/balance'),
   getInvoices: (params) => apiClient.get('/invoices', { params }),
+  getInvoiceItems: (invoiceId) => apiClient.get(`/invoices/${invoiceId}/items`),
   getPayments: (params) => apiClient.get('/payments', { params }),
   getAllocations: (params) => apiClient.get('/allocations', { params }),
 };

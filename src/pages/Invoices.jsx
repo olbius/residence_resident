@@ -6,6 +6,9 @@ function Invoices() {
   const { t } = useTranslation();
   const [invoices, setInvoices] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedInvoice, setSelectedInvoice] = useState(null);
+  const [invoiceItems, setInvoiceItems] = useState([]);
+  const [loadingItems, setLoadingItems] = useState(false);
 
   useEffect(() => {
     loadInvoices();
@@ -20,6 +23,25 @@ function Invoices() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const loadInvoiceItems = async (invoice) => {
+    setSelectedInvoice(invoice);
+    setLoadingItems(true);
+    try {
+      const response = await myFinancialApi.getInvoiceItems(invoice.invoiceId);
+      setInvoiceItems(response.data.invoiceItemList || []);
+    } catch (error) {
+      console.error('Error loading invoice items:', error);
+      setInvoiceItems([]);
+    } finally {
+      setLoadingItems(false);
+    }
+  };
+
+  const closeModal = () => {
+    setSelectedInvoice(null);
+    setInvoiceItems([]);
   };
 
   const formatCurrency = (amount) => {
@@ -58,7 +80,11 @@ function Invoices() {
             </thead>
             <tbody>
               {invoices.map(invoice => (
-                <tr key={invoice.invoiceId}>
+                <tr 
+                  key={invoice.invoiceId} 
+                  onClick={() => loadInvoiceItems(invoice)}
+                  className="clickable-row"
+                >
                   <td>{invoice.invoiceId}</td>
                   <td>{formatDate(invoice.invoiceDate)}</td>
                   <td>{formatDate(invoice.dueDate)}</td>
@@ -72,6 +98,82 @@ function Invoices() {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {selectedInvoice && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>{t('invoices.invoiceDetail')}</h2>
+              <button className="modal-close" onClick={closeModal}>&times;</button>
+            </div>
+            <div className="modal-body">
+              <div className="invoice-summary">
+                <div className="info-grid">
+                  <div className="info-item">
+                    <div className="info-label">{t('invoices.invoiceNumber')}</div>
+                    <div className="info-value">{selectedInvoice.invoiceId}</div>
+                  </div>
+                  <div className="info-item">
+                    <div className="info-label">{t('invoices.date')}</div>
+                    <div className="info-value">{formatDate(selectedInvoice.invoiceDate)}</div>
+                  </div>
+                  <div className="info-item">
+                    <div className="info-label">{t('invoices.dueDate')}</div>
+                    <div className="info-value">{formatDate(selectedInvoice.dueDate)}</div>
+                  </div>
+                  <div className="info-item">
+                    <div className="info-label">{t('invoices.status')}</div>
+                    <div className="info-value">
+                      <span className={`status-badge status-${selectedInvoice.statusId?.toLowerCase()}`}>
+                        {selectedInvoice.statusId}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h3>{t('invoices.items')}</h3>
+              {loadingItems ? (
+                <div className="loading">{t('common.loading')}</div>
+              ) : invoiceItems.length === 0 ? (
+                <div className="no-data">{t('invoices.noItems')}</div>
+              ) : (
+                <table className="data-table">
+                  <thead>
+                    <tr>
+                      <th>{t('invoices.itemDescription')}</th>
+                      <th>{t('invoices.quantity')}</th>
+                      <th>{t('invoices.unitPrice')}</th>
+                      <th>{t('invoices.itemAmount')}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {invoiceItems.map((item, index) => {
+                      const qty = item.quantity || 1;
+                      const totalAmount = item.amount || 0;
+                      const unitPrice = qty > 0 ? totalAmount / qty : totalAmount;
+                      return (
+                        <tr key={item.invoiceItemSeqId || index}>
+                          <td>{item.description || item.itemDescription || '-'}</td>
+                          <td>{qty}</td>
+                          <td>{formatCurrency(unitPrice)}</td>
+                          <td>{formatCurrency(totalAmount)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colSpan="3" className="total-label">{t('invoices.total')}</td>
+                      <td className="total-value">{formatCurrency(selectedInvoice.invoiceTotal)}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>
