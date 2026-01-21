@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     try {
       // Use Moqui's standard login endpoint
       const response = await axios.post(
-        '/rest/login',
+        '/rest/s1/moqui/login',
         { username, password },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -100,7 +100,7 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         // Use Moqui's standard logout endpoint
         await axios.post(
-          '/rest/logout',
+          '/rest/s1/moqui/logout',
           {},
           {
             headers: { 
