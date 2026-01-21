@@ -27,17 +27,19 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      // Use Moqui's standard login endpoint
-      const response = await axios.post(
+      // Use Basic Auth with Moqui's login endpoint
+      const response = await axios.get(
         '/rest/s1/moqui/login',
-        { username, password },
         {
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Authorization': `Basic ${btoa(`${username}:${password}`)}`,
+          },
           withCredentials: true,
         }
       );
 
-      const { moquiSessionToken } = response.data;
+      // Extract token from response headers
+      const moquiSessionToken = response.headers['moquisessiontoken'] || response.headers['moquiSessionToken'];
       
       // Store session token
       localStorage.setItem('moquiSessionToken', moquiSessionToken);
