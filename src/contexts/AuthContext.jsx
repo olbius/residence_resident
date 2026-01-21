@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     try {
       // Use Basic Auth with Moqui's login endpoint
       const response = await axios.get(
-        '/rest/s1/moqui/login',
+        '/rest/login',
         {
           headers: {
             'Authorization': `Basic ${btoa(`${username}:${password}`)}`,
@@ -102,7 +102,7 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         // Use Moqui's standard logout endpoint
         await axios.post(
-          '/rest/s1/moqui/logout',
+          '/rest/logout',
           {},
           {
             headers: { 
