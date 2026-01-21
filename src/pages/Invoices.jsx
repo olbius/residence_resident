@@ -25,14 +25,16 @@ function Invoices() {
     }
   };
 
-  const loadInvoiceItems = async (invoice) => {
-    setSelectedInvoice(invoice);
+  const loadInvoiceDetail = async (invoice) => {
     setLoadingItems(true);
     try {
-      const response = await myFinancialApi.getInvoiceItems(invoice.invoiceId);
-      setInvoiceItems(response.data.invoiceItemList || []);
+      const response = await myFinancialApi.getInvoice(invoice.invoiceId);
+      const fullInvoice = response.data;
+      setSelectedInvoice(fullInvoice);
+      setInvoiceItems(fullInvoice.items || []);
     } catch (error) {
-      console.error('Error loading invoice items:', error);
+      console.error('Error loading invoice details:', error);
+      setSelectedInvoice(invoice);
       setInvoiceItems([]);
     } finally {
       setLoadingItems(false);
@@ -82,7 +84,7 @@ function Invoices() {
               {invoices.map(invoice => (
                 <tr 
                   key={invoice.invoiceId} 
-                  onClick={() => loadInvoiceItems(invoice)}
+                  onClick={() => loadInvoiceDetail(invoice)}
                   className="clickable-row"
                 >
                   <td>{invoice.invoiceId}</td>
@@ -152,11 +154,11 @@ function Invoices() {
                   <tbody>
                     {invoiceItems.map((item, index) => {
                       const qty = item.quantity || 1;
-                      const totalAmount = item.amount || 0;
-                      const unitPrice = qty > 0 ? totalAmount / qty : totalAmount;
+                      const unitPrice = item.amount || 0;
+                      const totalAmount = qty * unitPrice;
                       return (
                         <tr key={item.invoiceItemSeqId || index}>
-                          <td>{item.description || item.itemDescription || '-'}</td>
+                          <td>{item.description || item.itemTypeEnumId || '-'}</td>
                           <td>{qty}</td>
                           <td>{formatCurrency(unitPrice)}</td>
                           <td>{formatCurrency(totalAmount)}</td>
