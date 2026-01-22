@@ -47,7 +47,18 @@
     "quantity": "SL",
     "unitPrice": "Đơn giá",
     "itemAmount": "Thành tiền",
-    "total": "Tổng cộng"
+    "total": "Tổng cộng",
+    "statusValues": {
+      "InvoiceIncoming": "Đang nhận",
+      "InvoiceInProcess": "Đang xử lý",
+      "InvoiceFinalized": "Hoàn tất",
+      "InvoiceApproved": "Đã duyệt",
+      "InvoiceSent": "Đã gửi",
+      "InvoicePmtRecvd": "Đã nhận thanh toán",
+      "InvoicePaid": "Đã thanh toán",
+      "InvoiceWriteOff": "Đã xóa nợ",
+      "InvoiceCancelled": "Đã hủy"
+    }
   },
   "payments": {
     "title": "Thanh Toán Của Tôi",
@@ -55,7 +66,24 @@
     "amount": "Số tiền",
     "method": "Phương thức",
     "status": "Trạng thái",
-    "noPayments": "Chưa có thanh toán"
+    "noPayments": "Chưa có thanh toán",
+    "statusValues": {
+      "PmntProposed": "Đề xuất",
+      "PmntPromised": "Cam kết",
+      "PmntAuthorized": "Đã xác nhận",
+      "PmntDelivered": "Đã giao",
+      "PmntConfirmed": "Đã xác nhận",
+      "PmntVoid": "Đã hủy bỏ",
+      "PmntRefunded": "Đã hoàn trả",
+      "PmntCancelled": "Đã hủy",
+      "PmntDeclined": "Bị từ chối"
+    },
+    "methods": {
+      "bankTransfer": "Chuyển Khoản",
+      "cash": "Tiền Mặt",
+      "check": "Séc",
+      "creditCard": "Thẻ Tín Dụng"
+    }
   },
   "vehicles": {
     "title": "Phương Tiện Đã Đăng Ký",
@@ -72,6 +100,11 @@
       "motorcycle": "Xe máy",
       "ebike": "Xe điện",
       "bicycle": "Xe đạp"
+    },
+    "statusValues": {
+      "active": "Đang hoạt động",
+      "expired": "Hết hạn",
+      "cancelled": "Đã hủy"
     }
   },
   "common": {

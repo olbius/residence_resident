@@ -93,7 +93,7 @@ function Invoices() {
                   <td>{formatCurrency(invoice.invoiceTotal)}</td>
                   <td>
                     <span className={`status-badge status-${invoice.statusId?.toLowerCase()}`}>
-                      {invoice.statusId}
+                      {t(`invoices.statusValues.${invoice.statusId}`, invoice.statusId)}
                     </span>
                   </td>
                 </tr>
@@ -129,7 +129,7 @@ function Invoices() {
                     <div className="info-label">{t('invoices.status')}</div>
                     <div className="info-value">
                       <span className={`status-badge status-${selectedInvoice.statusId?.toLowerCase()}`}>
-                        {selectedInvoice.statusId}
+                        {t(`invoices.statusValues.${selectedInvoice.statusId}`, selectedInvoice.statusId)}
                       </span>
                     </div>
                   </div>

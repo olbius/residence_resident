@@ -60,10 +60,10 @@ function Payments() {
                 <tr key={payment.paymentId}>
                   <td>{formatDate(payment.effectiveDate)}</td>
                   <td>{formatCurrency(payment.amount)}</td>
-                  <td>{payment.paymentMethodEnumId || '-'}</td>
+                  <td>{t(`payments.methods.${payment.paymentMethodEnumId}`, payment.paymentMethodEnumId) || '-'}</td>
                   <td>
                     <span className={`status-badge status-${payment.statusId?.toLowerCase()}`}>
-                      {payment.statusId}
+                      {t(`payments.statusValues.${payment.statusId}`, payment.statusId)}
                     </span>
                   </td>
                 </tr>

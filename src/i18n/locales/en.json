@@ -47,7 +47,18 @@
     "quantity": "Qty",
     "unitPrice": "Unit Price",
     "itemAmount": "Amount",
-    "total": "Total"
+    "total": "Total",
+    "statusValues": {
+      "InvoiceIncoming": "Incoming",
+      "InvoiceInProcess": "In Process",
+      "InvoiceFinalized": "Finalized",
+      "InvoiceApproved": "Approved",
+      "InvoiceSent": "Sent",
+      "InvoicePmtRecvd": "Payment Received",
+      "InvoicePaid": "Paid",
+      "InvoiceWriteOff": "Written Off",
+      "InvoiceCancelled": "Cancelled"
+    }
   },
   "payments": {
     "title": "My Payments",
@@ -55,7 +66,24 @@
     "amount": "Amount",
     "method": "Method",
     "status": "Status",
-    "noPayments": "No payments found"
+    "noPayments": "No payments found",
+    "statusValues": {
+      "PmntProposed": "Proposed",
+      "PmntPromised": "Promised",
+      "PmntAuthorized": "Authorized",
+      "PmntDelivered": "Delivered",
+      "PmntConfirmed": "Confirmed",
+      "PmntVoid": "Voided",
+      "PmntRefunded": "Refunded",
+      "PmntCancelled": "Cancelled",
+      "PmntDeclined": "Declined"
+    },
+    "methods": {
+      "bankTransfer": "Bank Transfer",
+      "cash": "Cash",
+      "check": "Check",
+      "creditCard": "Credit Card"
+    }
   },
   "vehicles": {
     "title": "My Registered Vehicles",
@@ -72,6 +100,11 @@
       "motorcycle": "Motorcycle",
       "ebike": "Electric Bike",
       "bicycle": "Bicycle"
+    },
+    "statusValues": {
+      "active": "Active",
+      "expired": "Expired",
+      "cancelled": "Cancelled"
     }
   },
   "common": {

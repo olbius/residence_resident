@@ -74,7 +74,7 @@ function Vehicles() {
                   <td>{formatCurrency(vehicle.monthlyFee)}</td>
                   <td>
                     <span className={`status-badge status-${vehicle.statusEnumId?.toLowerCase()}`}>
-                      {vehicle.statusEnumId}
+                      {t(`vehicles.statusValues.${vehicle.statusEnumId}`, vehicle.statusEnumId)}
                     </span>
                   </td>
                 </tr>
